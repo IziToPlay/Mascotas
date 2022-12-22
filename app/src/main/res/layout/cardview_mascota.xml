@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cvMascota"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/margin_horizontal"
+    android:layout_marginBottom="@dimen/margin_horizontal"
+    android:layout_marginTop="@dimen/margin_vertical"
+    android:layout_marginEnd="@dimen/margin_vertical"
+    android:backgroundTint="@color/white"
+    card_view:cardCornerRadius="@dimen/corner_cardview">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_card_view">
+
+        <ImageView
+            android:id="@+id/imgFotoCV"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_foto"
+            android:scaleType="fitXY">
+        </ImageView>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="1"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical">
+                <ImageButton
+                    android:id="@+id/btnDarHueso"
+                    android:layout_width="@dimen/size_bone"
+                    android:layout_height="@dimen/size_bone"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/white"
+                    android:src="@drawable/ic_bone"></ImageButton>
+                <TextView
+                    android:id="@+id/tvNombreCV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:textSize="@dimen/size_texto"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="horizontal"
+                android:layout_gravity="end|center_vertical">
+                <TextView
+                    android:id="@+id/tvRaitingCV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/size_texto"
+                    android:layout_marginEnd="5dp"
+                    android:textStyle="bold"></TextView>
+
+                <ImageView
+                    android:id="@+id/imgYellowBoneCV"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/ic_yellow_bone">
+                </ImageView>
+            </LinearLayout>
+        </GridLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
