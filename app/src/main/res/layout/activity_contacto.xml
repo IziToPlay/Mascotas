@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Contacto">
+
+    <include android:id="@+id/miActionBar" layout="@layout/action_bar"></include>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_vertical"
+        android:layout_marginBottom="@dimen/margin_vertical">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiNombreCompleto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_nombre_completo"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_below="@id/tiNombreCompleto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_vertical">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_email"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_mensaje"
+        android:layout_marginBottom="@dimen/margin_vertical">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiMensaje"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="top"
+            android:hint="@string/hint_mensaje"
+            android:minHeight="@dimen/margin_horizontal"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_gravity="center|bottom"
+        android:theme="@style/Theme.Mascotas">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnEnviarComentario"
+            android:theme="@style/ButtonTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center"
+            android:layout_marginBottom="@dimen/margin_vertical"
+            android:text="@string/hint_enviar_comentario"
+            android:textSize="@dimen/size_texto_button" />
+    </LinearLayout>
+</LinearLayout>

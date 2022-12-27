@@ -1,13 +1,15 @@
-package com.example.mascotas;
+package com.example.mascotas.pojo;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.mascotas.adapter.MascotaAdapter;
+import com.example.mascotas.R;
+
 import java.util.ArrayList;
 
 public class DetalleMascota extends AppCompatActivity {

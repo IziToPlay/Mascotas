@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/topFiveStar"
+        android:title="Top Five"
+        android:icon="@drawable/ic_top_five_star"
+        app:showAsAction="always">
+    </item>
+    <item android:id="@+id/moContacto" android:title="Contacto" android:orderInCategory="0"></item>
+    <item android:id="@+id/moAcercaDe" android:title="Acerca de" android:orderInCategory="1"></item>
+</menu>

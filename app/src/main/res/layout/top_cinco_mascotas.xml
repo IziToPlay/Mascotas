@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetalleMascota">
+    tools:context=".pojo.DetalleMascota">
 
     <include android:id="@+id/miActionBar" layout="@layout/action_bar"></include>
 

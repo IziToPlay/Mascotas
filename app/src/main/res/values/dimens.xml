@@ -7,6 +7,9 @@
     <dimen name="corner_cardview">10dp</dimen>
     <dimen name="size_foto">150dp</dimen>
     <dimen name="size_texto">20dp</dimen>
+    <dimen name="size_nombre_perfil">40dp</dimen>
+    <dimen name="size_texto_button">15dp</dimen>
     <dimen name="size_bone">40dp</dimen>
     <dimen name="elevacion_action_bar">4dp</dimen>
+    <dimen name="size_mensaje">150dp</dimen>
 </resources>

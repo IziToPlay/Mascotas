@@ -1,9 +1,8 @@
-package com.example.mascotas;
+package com.example.mascotas.pojo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 public class Mascota implements Serializable {
     private String nombre;
@@ -53,3 +52,4 @@ public int compare(Mascota o1, Mascota o2) {
         this.raiting = raiting;
     }
 }
+

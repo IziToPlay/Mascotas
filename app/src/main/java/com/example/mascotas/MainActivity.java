@@ -3,20 +3,30 @@ package com.example.mascotas;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.mascotas.adapter.PageAdapter;
+import com.example.mascotas.fragment.PerfilFragment;
+import com.example.mascotas.fragment.RecyclerViewFragment;
+import com.example.mascotas.pojo.Mascota;
+import com.example.mascotas.adapter.MascotaAdapter;
+import com.example.mascotas.pojo.DetalleMascota;
+import com.google.android.material.tabs.TabLayout;
+
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
-    ArrayList<Mascota> mascotas;
-    private RecyclerView listaMascotas;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,35 +34,29 @@ public class MainActivity extends AppCompatActivity {
         Toolbar miActionBar = findViewById(R.id.miActionBar);
         setSupportActionBar(miActionBar);
 
-        listaMascotas = findViewById(R.id.rvMascotas);
-
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-
-        //GridLayoutManager glm = new GridLayoutManager(this,2);
-
-        listaMascotas.setLayoutManager(llm);
-        inicializarListaMascotas();
-        inicializarAdaptador();
+        tabLayout = findViewById(R.id.tabLayout);
+        viewPager = findViewById(R.id.viewPager);
+        setUpViewPager();
     }
-    public void inicializarListaMascotas(){
-        mascotas = new ArrayList<Mascota>();
+    private ArrayList<Fragment> agregarFragments(){
+        ArrayList<Fragment> fragments = new ArrayList<>();
 
-        mascotas.add(new Mascota("Perro 1",10,R.mipmap.img_pug));
-        mascotas.add(new Mascota("Perro 2",5,R.mipmap.img_perro));
-        mascotas.add(new Mascota("Perro 3",3,R.mipmap.img_perro2));
-        mascotas.add(new Mascota("Perro 4",1,R.mipmap.img_perro3));
-        mascotas.add(new Mascota("Perro 5",6,R.mipmap.img_perro4));
-        mascotas.add(new Mascota("Perro 6",8,R.mipmap.img_perro5));
+        fragments.add(new RecyclerViewFragment());
+        fragments.add(new PerfilFragment());
+
+        return fragments;
     }
-    public void inicializarAdaptador(){
-        MascotaAdapter adaptador = new MascotaAdapter(mascotas,this);
-        listaMascotas.setAdapter(adaptador);
+    private void setUpViewPager(){
+        viewPager.setAdapter(new PageAdapter(getSupportFragmentManager(),agregarFragments()));
+        tabLayout.setupWithViewPager(viewPager);
+
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_dog);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.action_bar_menu,menu);
+        getMenuInflater().inflate(R.menu.menu_opciones,menu);
         //mascotas = new ArrayList<Mascota>();
 
         //MenuItem topFive = menu.findItem(R.id.topFiveStar);
@@ -63,17 +67,29 @@ public class MainActivity extends AppCompatActivity {
             return super.onCreateOptionsMenu(menu);
         });*/
 
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
             case R.id.topFiveStar:
-                Intent intent = new Intent(this,DetalleMascota.class);
-                intent.putExtra(getResources().getString(R.string.lista_top_mascotas),mascotas);
+                Intent intent = new Intent(this, DetalleMascota.class);
+                //intent.putExtra(getResources().getString(R.string.lista_top_mascotas),mascotas);
                 startActivity(intent);
                 break;
+            case R.id.moContacto:
+                Intent i = new Intent(this, Contacto.class);
+                startActivity(i);
+                break;
+            case R.id.moAcercaDe:
+                Intent in = new Intent(this, AcercaDe.class);
+                startActivity(in);
+                break;
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
         }
         return super.onOptionsItemSelected(item);
     }

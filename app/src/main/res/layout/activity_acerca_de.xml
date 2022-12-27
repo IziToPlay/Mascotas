@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AcercaDe">
+
+    <include android:id="@+id/miActionBar" layout="@layout/action_bar"></include>
+
+    <TextView
+        android:id="@+id/tvBio"
+        android:layout_below="@+id/miActionBar"
+        android:padding="@dimen/margin_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/size_texto"/>
+
+</RelativeLayout>
