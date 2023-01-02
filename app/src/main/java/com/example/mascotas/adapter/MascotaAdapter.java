@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mascotas.db.ConstructorMascotas;
 import com.example.mascotas.pojo.Mascota;
 import com.example.mascotas.R;
 
@@ -48,8 +49,9 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
         });*/
 
         mascotaViewHolder.btnDarHueso.setOnClickListener(view -> {
-            int raiting = mascota.getRaiting();
-            mascota.setRaiting(++raiting);
+            ConstructorMascotas constructorContactos = new ConstructorMascotas(activity);
+            constructorContactos.darRatingMascota(mascota);
+            mascotaViewHolder.tvRaitingCV.setText(String.valueOf(constructorContactos.obtenerRatingsMascota(mascota)));
             Toast.makeText(activity,"Diste un hueso a: " + mascota.getNombre(), Toast.LENGTH_SHORT).show();
         });
     }

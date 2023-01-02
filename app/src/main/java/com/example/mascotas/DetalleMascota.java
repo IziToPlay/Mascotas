@@ -1,21 +1,32 @@
-package com.example.mascotas.pojo;
+package com.example.mascotas;
 
 import android.os.Bundle;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.mascotas.adapter.MascotaAdapter;
 import com.example.mascotas.R;
+import com.example.mascotas.adapter.PageAdapter;
+import com.example.mascotas.fragment.PerfilFragment;
+import com.example.mascotas.fragment.RecyclerViewFragment;
+import com.example.mascotas.fragment.RecylerViewFragmentTopCinco;
+import com.example.mascotas.pojo.Mascota;
+import com.example.mascotas.presentador.RecyclerViewFragmentPresenter;
 
 import java.util.ArrayList;
 
 public class DetalleMascota extends AppCompatActivity {
-    ArrayList<Mascota> mascotas;
+    //ArrayList<Mascota> mascotas;
     ArrayList<Mascota> mascotas_mostrar;
-    private RecyclerView listaMascotas;
+    private ViewPager viewPagerTopCinco;
+    private RecyclerViewFragmentPresenter presenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,20 +35,25 @@ public class DetalleMascota extends AppCompatActivity {
         setSupportActionBar(miActionBar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Top Cinco Mascotas");
 
-        listaMascotas = findViewById(R.id.rvTopCincoMascotas);
+        viewPagerTopCinco = findViewById(R.id.viewPagerTopCinco);
 
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        setUpViewPager();
 
-        //GridLayoutManager glm = new GridLayoutManager(this,2);
 
-        listaMascotas.setLayoutManager(llm);
-        inicializarListaMascotas();
-        inicializarAdaptador();
+
+    }
+    private ArrayList<Fragment> agregarFragment(){
+        ArrayList<Fragment> fragments = new ArrayList<>();
+        fragments.add(new RecylerViewFragmentTopCinco());
+        return fragments;
+    }
+    private void setUpViewPager(){
+        viewPagerTopCinco.setAdapter(new PageAdapter(getSupportFragmentManager(), agregarFragment()));
     }
 
-    public void inicializarListaMascotas(){
+    /*public void inicializarListaMascotas(){
         mascotas = new ArrayList<Mascota>();
         mascotas_mostrar = new ArrayList<Mascota>();
         Bundle bundle = getIntent().getExtras();
@@ -48,16 +64,11 @@ public class DetalleMascota extends AppCompatActivity {
                 mascotas_mostrar.add(mascotas.get(i));
             }
         }
-        /*Collections.sort(mascotas, new Comparator<Mascota>() {
+        Collections.sort(mascotas, new Comparator<Mascota>() {
             @Override
             public int compare(Mascota o1, Mascota o2) {
                 return o1.getRaiting().compareTo(o2.getRaiting());
             }
-        });*/
-
-    }
-    public void inicializarAdaptador(){
-        MascotaAdapter adaptador = new MascotaAdapter(mascotas_mostrar,this);
-        listaMascotas.setAdapter(adaptador);
-    }
+        });
+    }*/
 }

@@ -46,7 +46,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".pojo.DetalleMascota"
+            android:name=".DetalleMascota"
             android:exported="false"
             android:parentActivityName=".MainActivity">
             <meta-data

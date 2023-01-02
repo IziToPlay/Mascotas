@@ -4,8 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
@@ -16,9 +14,6 @@ import android.view.MenuItem;
 import com.example.mascotas.adapter.PageAdapter;
 import com.example.mascotas.fragment.PerfilFragment;
 import com.example.mascotas.fragment.RecyclerViewFragment;
-import com.example.mascotas.pojo.Mascota;
-import com.example.mascotas.adapter.MascotaAdapter;
-import com.example.mascotas.pojo.DetalleMascota;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;

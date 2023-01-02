@@ -11,51 +11,36 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mascotas.MainActivity;
 import com.example.mascotas.R;
 import com.example.mascotas.adapter.MascotaAdapter;
 import com.example.mascotas.pojo.Mascota;
-import com.example.mascotas.presentador.IRecyclerViewFragmentPresenter;
 import com.example.mascotas.presentador.RecyclerViewFragmentPresenter;
 
 import java.util.ArrayList;
 
-public class RecyclerViewFragment extends Fragment implements IReclycerViewFragmentView {
-    private RecyclerView rvMascotas;
+public class RecylerViewFragmentTopCinco extends Fragment implements IReclycerViewFragmentView {
+    private RecyclerView rvTopCincoMascotas;
     private RecyclerViewFragmentPresenter presenter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_recyclerview,container,false);
+        View v = inflater.inflate(R.layout.fragment_recyclerview_topcinco, container, false);
 
-        rvMascotas = v.findViewById(R.id.rvMascotas);
+        rvTopCincoMascotas = v.findViewById(R.id.rvTopCincoMascotas);
 
         presenter = new RecyclerViewFragmentPresenter(this, getContext());
-        presenter.obtenerMascotasBaseDatos();
+        presenter.obtenerTopCincoMascotasBaseDatos();
 
         return v;
     }
-
-    /*public void ejecutarListadoAMostrarSegunContext(){
-        String contextName = getContext().getClass().getSimpleName();
-        switch(contextName){
-            case "MainActivity":
-                presenter.obtenerMascotasBaseDatos();
-                break;
-            case "DetalleMascota":
-                presenter.obtenerTopCincoMascotasBaseDatos();
-                break;
-        }
-    }*/
-
 
     @Override
     public void generarLinearLayoutVertical() {
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
 
-        rvMascotas.setLayoutManager(llm);
+        rvTopCincoMascotas.setLayoutManager(llm);
     }
 
     @Override
@@ -66,6 +51,6 @@ public class RecyclerViewFragment extends Fragment implements IReclycerViewFragm
 
     @Override
     public void inicializarAdaptador(MascotaAdapter mascotaAdapter) {
-        rvMascotas.setAdapter(mascotaAdapter);
+        rvTopCincoMascotas.setAdapter(mascotaAdapter);
     }
 }

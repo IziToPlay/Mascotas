@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Mascota implements Serializable {
+    private int id;
     private String nombre;
     private int foto;
     private int raiting;
@@ -14,6 +15,11 @@ public class Mascota implements Serializable {
         this.raiting = raiting;
         this.foto = foto;
     }
+
+    public Mascota() {
+
+    }
+
     public static class OrdernarMascotas {
         public static void main(ArrayList<Mascota> args) {
             Collections.sort(args, (o1, o2) -> Integer.valueOf(o2.raiting).compareTo(o1.raiting));
@@ -21,12 +27,20 @@ public class Mascota implements Serializable {
     }
             //ArrayList<Mascota> alMascotas = new ArrayList<>();
             //Ordenar ascendentemente el arrayList
-//Ordenar descendentemente el arrayList
-/*
-@Override
-public int compare(Mascota o1, Mascota o2) {
-    return Integer.valueOf(o2.raiting).compareTo(o1.raiting);
-}*/
+            //Ordenar descendentemente el arrayList
+            /*
+            @Override
+            public int compare(Mascota o1, Mascota o2) {
+            return Integer.valueOf(o2.raiting).compareTo(o1.raiting);
+            }*/
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNombre() {
         return nombre;

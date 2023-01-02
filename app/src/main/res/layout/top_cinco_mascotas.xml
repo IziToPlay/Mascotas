@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".pojo.DetalleMascota">
+    tools:context=".DetalleMascota">
 
     <include android:id="@+id/miActionBar" layout="@layout/action_bar"></include>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvTopCincoMascotas"
-        android:layout_below="@id/miActionBar"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPagerTopCinco"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:padding="@dimen/padding_mascotas">
-    </androidx.recyclerview.widget.RecyclerView>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    </androidx.viewpager.widget.ViewPager>
 
 </LinearLayout>
