@@ -1,17 +1,17 @@
-package com.example.mascotas;
+package com.example.mascotas.model;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
 import android.widget.Toast;
 
+import com.example.mascotas.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Properties;

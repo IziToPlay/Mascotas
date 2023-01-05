@@ -8,4 +8,5 @@
     </item>
     <item android:id="@+id/moContacto" android:title="Contacto" android:orderInCategory="0"></item>
     <item android:id="@+id/moAcercaDe" android:title="Acerca de" android:orderInCategory="1"></item>
+    <item android:id="@+id/moConfigurarCuenta" android:title="Configurar Cuenta" android:orderInCategory="2"></item>
 </menu>

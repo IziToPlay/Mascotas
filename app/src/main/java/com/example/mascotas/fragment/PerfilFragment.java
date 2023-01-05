@@ -1,11 +1,14 @@
 package com.example.mascotas.fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,50 +17,97 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mascotas.R;
+import com.example.mascotas.adapter.MascotaAdapter;
 import com.example.mascotas.adapter.MascotaFotoAdapter;
-import com.example.mascotas.pojo.Mascota;
+import com.example.mascotas.model.MascotaMedia;
+import com.example.mascotas.model.MascotaPerfil;
 import com.example.mascotas.pojo.MascotaFoto;
+import com.example.mascotas.presentador.PerfilFragmentPresenter;
+import com.example.mascotas.restApi.EndpointsApi;
+import com.example.mascotas.restApi.adapter.RestApiAdapter;
+import com.example.mascotas.restApi.model.MascotaPerfilResponse;
+import com.google.gson.Gson;
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class PerfilFragment extends Fragment {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class PerfilFragment extends Fragment implements IPerfilFragmentView{
+    private MascotaPerfil mascotaPerfil;
     private CircularImageView ivFotoPerfil;
     private TextView tvNombrePerfil;
+    private PerfilFragmentPresenter presenter;
     private RecyclerView rvFotosMascota;
-    private ArrayList<MascotaFoto> mascotaFotos;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_perfil,container,false);
 
+        //obtenerPerfilMascota();
         ivFotoPerfil = v.findViewById(R.id.ivFotoPerfil);
+        Picasso.with(getActivity())
+                .load("https://instagram.flim28-1.fna.fbcdn.net/v/t51.2885-19/323308466_1548404405659022_8865447066986094930_n.jpg?stp=dst-jpg_s320x320&_nc_ht=instagram.flim28-1.fna.fbcdn.net&_nc_cat=102&_nc_ohc=_xtxjo0kxSIAX8D3eZ7&tn=TSyqXRf_kGQJi7WN&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfAdGpNza_5LlvefRzvCAcju-yny96Zqf7G1x_EdIfVnTw&oe=63BC3C73&_nc_sid=8fd12b")
+                .placeholder(R.mipmap.img_pug)
+                .into(ivFotoPerfil);
+
         tvNombrePerfil = v.findViewById(R.id.tvNombrePerfil);
         rvFotosMascota = v.findViewById(R.id.rvFotosMascota);
-
-        ivFotoPerfil.setImageResource(R.mipmap.img_pug);
-        tvNombrePerfil.setText(getResources().getString(R.string.nombre_perfil));
-
-        GridLayoutManager glm = new GridLayoutManager(getActivity(),3);
-        rvFotosMascota.setLayoutManager(glm);
-        inicializarListaFotos();
-        inicializarAdaptador();
+        presenter = new PerfilFragmentPresenter(this, getContext());
+        mostrarUsuario();
 
         return v;
     }
-    public void inicializarListaFotos(){
-        mascotaFotos = new ArrayList<MascotaFoto>();
 
-        mascotaFotos.add(new MascotaFoto(R.mipmap.img_pug,9));
-        mascotaFotos.add(new MascotaFoto(R.mipmap.img_perro,11));
-        mascotaFotos.add(new MascotaFoto(R.mipmap.img_perro2,20));
-        mascotaFotos.add(new MascotaFoto(R.mipmap.img_perro3,50));
-        mascotaFotos.add(new MascotaFoto(R.mipmap.img_perro4,8));
-        mascotaFotos.add(new MascotaFoto(R.mipmap.img_perro5,15));
+    public void obtenerPerfilMascota() {
+        RestApiAdapter restApiAdapter = new RestApiAdapter();
+        //Se construye la forma en que se quiere deserializar los datos del json a recibir
+        Gson gsonPerfilMascota = restApiAdapter.construyeGsonDeserializadorMascotaPerfil();
+        //Se hace la consulta al API para obtener el json
+        EndpointsApi endpointsApi = restApiAdapter.establecerConexionRestApiUserInstagram(gsonPerfilMascota);
+        Call<MascotaPerfilResponse> mascotaPerfilResponseCall = endpointsApi.getPerfilMascota();
+        mascotaPerfilResponseCall.enqueue(new Callback<MascotaPerfilResponse>() {
+            @Override
+            public void onResponse(Call<MascotaPerfilResponse> call, Response<MascotaPerfilResponse> response) {
+                MascotaPerfilResponse mascotaMediaResponse = response.body();
+                mascotaPerfil = mascotaMediaResponse.getMascotaPerfil();
+            }
+
+            @Override
+            public void onFailure(Call<MascotaPerfilResponse> call, Throwable t) {
+                Toast.makeText(getContext(), "Ocurrí algo mal con la conexión! Intente de nuevo", Toast.LENGTH_LONG).show();
+                Log.e("FALLÓ LA CONEXIÓN ", t.toString());
+            }
+        });
     }
-    public void inicializarAdaptador(){
-        MascotaFotoAdapter adaptador = new MascotaFotoAdapter(mascotaFotos,getActivity());
-        rvFotosMascota.setAdapter(adaptador);
+
+    @Override
+    public void generarGridLayout() {
+        GridLayoutManager glm = new GridLayoutManager(getActivity(),2);
+
+        rvFotosMascota.setLayoutManager(glm);
+    }
+
+    @Override
+    public MascotaFotoAdapter crearAdaptadorMascotaMedia(ArrayList<MascotaMedia> mascotaMedias) {
+        MascotaFotoAdapter adaptador = new MascotaFotoAdapter(mascotaMedias,getActivity());
+        return adaptador;
+    }
+
+    @Override
+    public void inicializarAdaptadorMascotaMedia(MascotaFotoAdapter mascotaMediaAdapter) {
+        rvFotosMascota.setAdapter(mascotaMediaAdapter);
+    }
+
+    public void mostrarUsuario(){
+        SharedPreferences miPreferenciaCompartida = getActivity().getSharedPreferences("CuentaConfigurada", Context.MODE_PRIVATE);
+        String nombre = miPreferenciaCompartida.getString(getResources().getString(R.string.spEtUsuario),getResources().getString(R.string.NoExisteVariable));
+
+        tvNombrePerfil.setText(nombre); //\n salto de linea, \t salto con el tabulador
     }
 }

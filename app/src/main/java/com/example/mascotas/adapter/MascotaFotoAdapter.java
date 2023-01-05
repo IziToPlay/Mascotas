@@ -12,16 +12,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mascotas.R;
+import com.example.mascotas.model.MascotaMedia;
 import com.example.mascotas.pojo.Mascota;
 import com.example.mascotas.pojo.MascotaFoto;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class MascotaFotoAdapter extends RecyclerView.Adapter<MascotaFotoAdapter.MascotaFotoViewHolder>{
-    ArrayList<MascotaFoto> mascotaFotos;
+    ArrayList<MascotaMedia> mascotaMedias;
     Activity activity;
-    public MascotaFotoAdapter(ArrayList<MascotaFoto> mascotaFotos, Activity activity) {
-        this.mascotaFotos = mascotaFotos;
+    public MascotaFotoAdapter(ArrayList<MascotaMedia> mascotaMedias, Activity activity) {
+        this.mascotaMedias = mascotaMedias;
         this.activity = activity;
     }
     @NonNull
@@ -33,14 +35,15 @@ public class MascotaFotoAdapter extends RecyclerView.Adapter<MascotaFotoAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull MascotaFotoViewHolder mascotaFotoViewHolder, int position) {
-        MascotaFoto mascotaFoto = mascotaFotos.get(position);
-        mascotaFotoViewHolder.imgFotoMascotaCV.setImageResource(mascotaFoto.getFoto());
-        mascotaFotoViewHolder.tvRaitingMascotaCV.setText(Integer.toString(mascotaFoto.getRating()));
+        MascotaMedia mascotaMedia = mascotaMedias.get(position);
+        Picasso.with(activity).load(mascotaMedia.getUrl()).placeholder(R.mipmap.img_pug).into((mascotaFotoViewHolder.imgFotoMascotaCV));
+        //mascotaFotoViewHolder.imgFotoMascotaCV.setImageResource(mascotaMedia.getFoto());
+        mascotaFotoViewHolder.tvRaitingMascotaCV.setText(Integer.toString(mascotaMedia.getCaption()));
     }
 
     @Override
     public int getItemCount() {
-        return mascotaFotos.size();
+        return mascotaMedias.size();
     }
 
     public static class MascotaFotoViewHolder extends RecyclerView.ViewHolder {

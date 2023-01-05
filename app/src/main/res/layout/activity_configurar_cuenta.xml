@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ConfigurarCuenta"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <include android:id="@+id/miActionBar" layout="@layout/action_bar"></include>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="@dimen/size_nombre_perfil"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/size_nombre_perfil">
+    </TextView>
+
+    <EditText
+        android:id="@+id/etInputUsuario"
+        android:layout_marginTop="@dimen/size_nombre_perfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_texto">
+    </EditText>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/texto_guardar_cuenta"
+        android:onClick="guardarCuenta">
+    </Button>
+    </RelativeLayout>
+</LinearLayout>

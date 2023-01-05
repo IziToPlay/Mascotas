@@ -12,4 +12,13 @@
 
     <!--Perfil-->
     <string name="nombre_perfil">Thomas</string>
+
+    <!--Configurar Cuenta-->
+    <string name="texto_guardar_cuenta">Guardar Cuenta</string>
+    <string name="hint_texto">Escribe su usario</string>
+    <string name="spEtUsuario">etNombre</string>
+    <string name="cuenta_configurada">Cuenta configurada exitosamente</string>
+    <string name="nombre_cuenta_configurada">CuentaConfigurada</string>
+
+    <string name="NoExisteVariable">No existe la variable</string>
 </resources>

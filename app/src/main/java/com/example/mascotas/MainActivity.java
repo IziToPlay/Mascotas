@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import com.example.mascotas.adapter.PageAdapter;
 import com.example.mascotas.fragment.PerfilFragment;
 import com.example.mascotas.fragment.RecyclerViewFragment;
+import com.example.mascotas.model.Contacto;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -80,6 +81,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.moAcercaDe:
                 Intent in = new Intent(this, AcercaDe.class);
                 startActivity(in);
+                break;
+            case R.id.moConfigurarCuenta:
+                Intent intent1 = new Intent(this, ConfigurarCuenta.class);
+                startActivity(intent1);
                 break;
             default:
                 // If we got here, the user's action was not recognized.
