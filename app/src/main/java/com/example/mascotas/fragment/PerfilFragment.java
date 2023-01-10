@@ -59,31 +59,10 @@ public class PerfilFragment extends Fragment implements IPerfilFragmentView{
         tvNombrePerfil = v.findViewById(R.id.tvNombrePerfil);
         rvFotosMascota = v.findViewById(R.id.rvFotosMascota);
         presenter = new PerfilFragmentPresenter(this, getContext());
+        presenter.obtenerMediaMascota();
         mostrarUsuario();
 
         return v;
-    }
-
-    public void obtenerPerfilMascota() {
-        RestApiAdapter restApiAdapter = new RestApiAdapter();
-        //Se construye la forma en que se quiere deserializar los datos del json a recibir
-        Gson gsonPerfilMascota = restApiAdapter.construyeGsonDeserializadorMascotaPerfil();
-        //Se hace la consulta al API para obtener el json
-        EndpointsApi endpointsApi = restApiAdapter.establecerConexionRestApiUserInstagram(gsonPerfilMascota);
-        Call<MascotaPerfilResponse> mascotaPerfilResponseCall = endpointsApi.getPerfilMascota();
-        mascotaPerfilResponseCall.enqueue(new Callback<MascotaPerfilResponse>() {
-            @Override
-            public void onResponse(Call<MascotaPerfilResponse> call, Response<MascotaPerfilResponse> response) {
-                MascotaPerfilResponse mascotaMediaResponse = response.body();
-                mascotaPerfil = mascotaMediaResponse.getMascotaPerfil();
-            }
-
-            @Override
-            public void onFailure(Call<MascotaPerfilResponse> call, Throwable t) {
-                Toast.makeText(getContext(), "Ocurrí algo mal con la conexión! Intente de nuevo", Toast.LENGTH_LONG).show();
-                Log.e("FALLÓ LA CONEXIÓN ", t.toString());
-            }
-        });
     }
 
     @Override
@@ -107,7 +86,6 @@ public class PerfilFragment extends Fragment implements IPerfilFragmentView{
     public void mostrarUsuario(){
         SharedPreferences miPreferenciaCompartida = getActivity().getSharedPreferences("CuentaConfigurada", Context.MODE_PRIVATE);
         String nombre = miPreferenciaCompartida.getString(getResources().getString(R.string.spEtUsuario),getResources().getString(R.string.NoExisteVariable));
-
         tvNombrePerfil.setText(nombre); //\n salto de linea, \t salto con el tabulador
     }
 }

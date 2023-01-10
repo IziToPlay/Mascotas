@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:text="@string/texto_guardar_cuenta"
-        android:onClick="guardarCuenta">
+        android:onClick="obtenerPerfilMascota">
     </Button>
     </RelativeLayout>
 </LinearLayout>

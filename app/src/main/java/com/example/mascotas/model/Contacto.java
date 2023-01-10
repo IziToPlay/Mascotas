@@ -49,7 +49,7 @@ public class Contacto extends AppCompatActivity {
         //Sender email credential
         //Cuenta creada para esta tarea, cambiarlo con su propio correo en caso de testing
         sEmail = "joslui1720083@gmail.com";
-        sPassword = "alsuagoornoolhxz";
+        sPassword = "abc";
 
         btnEnviarComentario.setOnClickListener(v -> {
             Properties properties = new Properties();

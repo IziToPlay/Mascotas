@@ -17,8 +17,11 @@
     <string name="texto_guardar_cuenta">Guardar Cuenta</string>
     <string name="hint_texto">Escribe su usario</string>
     <string name="spEtUsuario">etNombre</string>
+    <string name="spEtIDUsuario">etIDUsuario</string>
     <string name="cuenta_configurada">Cuenta configurada exitosamente</string>
     <string name="nombre_cuenta_configurada">CuentaConfigurada</string>
+    <string name="configuracion_notificaciones">Recepción de notificaciones habilitada </string>
 
     <string name="NoExisteVariable">No existe la variable</string>
+    <string name="ErrorIDUsuarioInstagram">Error! Debe configurar la cuenta.</string>
 </resources>

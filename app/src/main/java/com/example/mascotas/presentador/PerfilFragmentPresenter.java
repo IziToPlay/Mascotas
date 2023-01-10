@@ -1,20 +1,25 @@
 package com.example.mascotas.presentador;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.example.mascotas.R;
 import com.example.mascotas.adapter.MascotaFotoAdapter;
 import com.example.mascotas.db.ConstructorMascotas;
 import com.example.mascotas.fragment.IPerfilFragmentView;
 import com.example.mascotas.fragment.IReclycerViewFragmentView;
 import com.example.mascotas.model.MascotaMedia;
+import com.example.mascotas.model.MascotaPerfil;
 import com.example.mascotas.pojo.Mascota;
 import com.example.mascotas.restApi.EndpointsApi;
 import com.example.mascotas.restApi.adapter.RestApiAdapter;
 import com.example.mascotas.restApi.model.MascotaMediaResponse;
+import com.example.mascotas.restApi.model.MascotaPerfilResponse;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -33,7 +38,6 @@ public class PerfilFragmentPresenter implements IPerfilFragmentPresenter{
     public PerfilFragmentPresenter(IPerfilFragmentView iPerfilFragmentView, Context context) {
         this.iPerfilFragmentView = iPerfilFragmentView;
         this.context = context;
-        obtenerMediaMascota();
     }
 
 
@@ -66,4 +70,5 @@ public class PerfilFragmentPresenter implements IPerfilFragmentPresenter{
         //iRecyclerViewFragmentView.generarLinearLayoutVertical();
         iPerfilFragmentView.generarGridLayout();
     }
+
 }

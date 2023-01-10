@@ -22,27 +22,27 @@ public class MascotaPerfilDeserializador implements JsonDeserializer<MascotaPerf
     public MascotaPerfilResponse deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         Gson gson = new Gson();
         gson.fromJson(json, MascotaPerfilResponse.class);
-        MascotaPerfilResponse mascotaMediaResponse = gson.fromJson(json, MascotaPerfilResponse.class);
-        JsonArray detalleMascotaResponseData = json.getAsJsonObject().getAsJsonArray();
+        MascotaPerfilResponse mascotaPerfilResponse = gson.fromJson(json, MascotaPerfilResponse.class);
+        JsonObject detalleMascotaResponseData = json.getAsJsonObject();
 
-        mascotaMediaResponse.setMascotaPerfil(deserializarContactoDeJson(detalleMascotaResponseData));
-        return mascotaMediaResponse;
+        mascotaPerfilResponse.setMascotaPerfil(deserializarContactoDeJson(detalleMascotaResponseData));
+        return mascotaPerfilResponse;
     }
 
-    private MascotaPerfil deserializarContactoDeJson(JsonArray mascotaMediaResponseData){
+    private MascotaPerfil deserializarContactoDeJson(JsonObject mascotaPerfilResponseData){
         MascotaPerfil mascotaPerfil = new MascotaPerfil();
-        for(int i = 0; i < mascotaMediaResponseData.size(); i++){
-            JsonObject detalleMascotaResponseDataObject = mascotaMediaResponseData.get(i).getAsJsonObject(); //Con esto se entra al objeto 0 del json
+        //for(int i = 0; i < mascotaPerfilResponseData.size(); i++){
+            //JsonObject detalleMascotaResponseDataObject = mascotaPerfilResponseData.get(i).getAsJsonObject(); //Con esto se entra al objeto 0 del json
 
             //JsonObject userJson = contactoResponseDataObject.getAsJsonObject(JsonKeys.USER);
             //String user_id = userJson.get("USER_ID").getAsString();
 
-            int id = detalleMascotaResponseDataObject.get(JsonKeys.USER_ID).getAsInt();
-            String username = detalleMascotaResponseDataObject.get(JsonKeys.USER_USERNAME).getAsString();
+            String id = mascotaPerfilResponseData.get(JsonKeys.USER_ID).getAsString();
+            String username = mascotaPerfilResponseData.get(JsonKeys.USER_USERNAME).getAsString();
 
             mascotaPerfil.setId(id);
             mascotaPerfil.setUsername(username);
-        }
+        //}
         return mascotaPerfil;
     }
 
