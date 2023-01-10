@@ -24,5 +24,5 @@ public class ConstantesRestApi {
     //https://graph.instagram.com/me/media?fields=id,media_type,media_url,caption&access_token=
 
     public static final String ROOT_URL = "https://polar-island-53737.herokuapp.com/";
-    public static final String KEY_POST_ID_TOKEN = "registrar-usuario/"; //Endpoint para obtener el token de firebase
+    public static final String KEY_POST_ID_TOKEN = "abc"; //Endpoint para obtener el token de firebase
 }
