@@ -10,7 +10,7 @@ public class ConstantesRestApi {
     public static final String ROOT_URL_MEDIA = "https://graph.instagram.com" + ME;
     public static final String ROOT_URL_USER = "https://graph.instagram.com" + VERSION;
 
-    public static final String ACCESS_TOKEN = "IGQVJWTkJEbUhib1JVZADdfOVI3Xy13UElJQms4VHVicjJzNlhIOGFsMk9qWDNHVEdaOGhvV2g2THNRWXZATbUVPYTJ3WVdNMVd0QUVtaDVCdl9qR1lTYzlaQjlWbG5WYklSNmtQYXFncUtTT1dDLVhhdQZDZD";
+    public static final String ACCESS_TOKEN = "abc";
     public static final String KEY_ACCESS_TOKEN = "&access_token=";
 
     public static final String KEY_GET_INFORMATION_USER = USER_ID + "?fields=id,username";
