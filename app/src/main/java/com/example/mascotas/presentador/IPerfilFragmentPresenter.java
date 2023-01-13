@@ -10,4 +10,7 @@ import java.util.ArrayList;
 public interface IPerfilFragmentPresenter {
     void obtenerMediaMascota();
     void mostrarMediaMascotasRV();
+    void obtenerLikesXFoto(String id);
+    void registrarLikeEnFoto(String id_foto_instagram, String usuario_instagram, String token_cuenta_vinculada);
+    void actualizarLikesEnFoto(String id, String likes);
 }

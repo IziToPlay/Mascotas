@@ -4,6 +4,7 @@ import com.example.mascotas.deserializador.DetalleMascotaDeserializador;
 import com.example.mascotas.deserializador.MascotaPerfilDeserializador;
 import com.example.mascotas.restApi.ConstantesRestApi;
 import com.example.mascotas.restApi.EndpointsApi;
+import com.example.mascotas.restApi.model.FotoLikeResponse;
 import com.example.mascotas.restApi.model.MascotaMediaResponse;
 import com.example.mascotas.restApi.model.MascotaPerfilResponse;
 import com.google.gson.Gson;

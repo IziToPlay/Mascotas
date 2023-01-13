@@ -18,6 +18,7 @@
     <string name="hint_texto">Escribe su usario</string>
     <string name="spEtUsuario">etNombre</string>
     <string name="spEtIDUsuario">etIDUsuario</string>
+    <string name="spEtToken">etToken</string>
     <string name="cuenta_configurada">Cuenta configurada exitosamente</string>
     <string name="nombre_cuenta_configurada">CuentaConfigurada</string>
     <string name="configuracion_notificaciones">Recepción de notificaciones habilitada </string>
